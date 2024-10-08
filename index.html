@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +7,8 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #2b2d42; /* Dark background */
-            color: #ffffff; /* White text */
+            background-color: #2C2F33; /* Dark background similar to Roblox */
+            color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -16,62 +16,60 @@
             margin: 0;
         }
         .login-container {
-            background-color: #3f3f3f; /* Dark gray for container */
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            background-color: #33353A; /* Dark gray for container */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
             text-align: center;
-            width: 400px; /* Fixed width for consistency */
+            width: 380px; /* Adjusted width for consistency */
         }
         h1 {
             margin-bottom: 20px;
-            font-size: 24px; /* Adjusted size */
-            color: #ffffff; /* White for text */
+            font-size: 24px;
+            color: #ffffff;
         }
         input {
             display: block;
-            width: calc(100% - 20px); /* Adjusted for padding */
-            padding: 10px;
+            width: 100%;
+            padding: 12px;
             margin: 10px 0;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            background-color: #333; /* Dark input fields */
-            color: white; /* White text for inputs */
+            border: 1px solid #4f4f4f;
+            border-radius: 4px;
+            background-color: #23272A; /* Darker gray for input fields */
+            color: #ffffff;
+            font-size: 14px;
         }
         button {
-            background-color: #ffcc00; /* Roblox yellow */
-            color: black; /* Black text for button */
-            padding: 10px;
+            background-color: #FFCC00; /* Roblox yellow */
+            color: black;
+            padding: 12px;
             border: none;
-            border-radius: 6px;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-            width: 100%; /* Full width button */
-            margin-top: 10px; /* Space above the button */
+            font-size: 14px;
+            width: 100%;
         }
         button:hover {
-            background-color: #e6b800; /* Darker yellow on hover */
+            background-color: #e6b800;
+        }
+        .forgot-password,
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #cccccc;
+        }
+        .forgot-password a,
+        .footer a {
+            color: #FFCC00;
+            text-decoration: none;
+        }
+        .forgot-password a:hover,
+        .footer a:hover {
+            text-decoration: underline;
         }
         #result {
             margin-top: 15px;
-            color: #ffcc00; /* Yellow for messages */
-        }
-        .footer, .forgot-password {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #ccc; /* Light gray for footer text */
-        }
-        .forgot-password {
-            margin-top: 10px;
-        }
-        .forgot-password a, .footer a {
-            color: #ffcc00;
-            text-decoration: none;
-        }
-        .forgot-password a:hover, .footer a:hover {
-            text-decoration: underline;
+            color: #FFCC00; /* Yellow for result text */
         }
     </style>
 </head>
@@ -86,8 +84,6 @@
         <p id="result"></p>
         <div class="forgot-password">
             <p><a href="#">Forgot Password or Username?</a></p>
-            <p><a href="#">Email Me a One-Time Code</a></p>
-            <p><a href="#">Use Another Device</a></p>
         </div>
         <div class="footer">
             <p>Don't have an account? <a href="#">Sign Up</a></p>
