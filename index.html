@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox Login & Sign Up</title>
+    <title>Download Page</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
             background-color: #1E1E2F; /* Dark background */
             color: #ffffff;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
             height: 100vh;
             margin: 0;
         }
@@ -24,20 +25,9 @@
             width: 400px; /* Container width */
         }
         h1 {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             font-size: 28px; /* Title font size */
             color: #FFCC00; /* Title color */
-        }
-        input {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            border: 1px solid #4f4f4f;
-            border-radius: 5px;
-            background-color: #3C3F47; /* Input field background */
-            color: #ffffff;
-            font-size: 16px; /* Input font size */
         }
         button {
             background-color: #FFCC00; /* Button color */
@@ -53,96 +43,43 @@
         button:hover {
             background-color: #e6b800; /* Darker yellow on hover */
         }
-        .footer {
+        .ads {
             margin-top: 20px;
-            font-size: 14px; /* Footer font size */
+            font-size: 14px; /* Ads font size */
             color: #cccccc;
         }
-        .footer a {
-            color: #FFCC00; /* Footer link color */
-            text-decoration: none;
-        }
-        .footer a:hover {
-            text-decoration: underline; /* Footer link hover effect */
-        }
-        #result {
-            margin-top: 20px;
-            color: #FFCC00; /* Result text color */
+        .ads img {
+            width: 100%; /* Responsive ads */
+            border-radius: 5px;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to Roblox</h1>
-        <form id="loginForm">
-            <input type="text" id="username" placeholder="Username/Email" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <button type="submit">Log In</button>
-        </form>
-        <div class="footer">
-            <p>Don't have an account? <a href="#" id="showSignUp">Sign Up</a></p>
+        <h1>Download Your File</h1>
+        <button id="downloadButton">Download Now</button>
+        <p id="downloadResult"></p>
+        <div class="ads">
+            <p>Check out our ads:</p>
+            <img src="https://via.placeholder.com/300x100" alt="Ad 1">
+            <img src="https://via.placeholder.com/300x100" alt="Ad 2">
         </div>
-        <p id="result"></p>
-    </div>
-
-    <div class="container" id="signUpContainer" style="display: none;">
-        <h1>Sign Up</h1>
-        <form id="signUpForm">
-            <input type="text" id="newUsername" placeholder="Username" required>
-            <input type="email" id="newEmail" placeholder="Email" required>
-            <input type="password" id="newPassword" placeholder="Password" required>
-            <button type="submit">Sign Up</button>
-        </form>
-        <div class="footer">
-            <p>Already have an account? <a href="#" id="showLogin">Log In</a></p>
-        </div>
-        <p id="signUpResult"></p>
     </div>
 
     <script>
-        // Handle login form submission
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            var username = document.getElementById('username').value;
-            var password = document.getElementById('password').value;
-            var result = document.getElementById('result');
-
-            // Simulate login process
-            result.textContent = "Logging in..."; // Simulated response
-            setTimeout(() => {
-                result.textContent = "Welcome back, " + username + "!";
-                // Redirect to lobby or main page
-                window.location.href = "https://www.roblox.com"; // Redirect to Roblox
-            }, 1000); // Simulated delay
-        });
-
-        // Handle sign up form submission
-        document.getElementById('signUpForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            var newUsername = document.getElementById('newUsername').value;
-            var newEmail = document.getElementById('newEmail').value;
-            var newPassword = document.getElementById('newPassword').value;
-            var signUpResult = document.getElementById('signUpResult');
-
-            // Simulate sign up process
-            signUpResult.textContent = "Signing up..."; // Simulated response
-            setTimeout(() => {
-                signUpResult.textContent = "Account created for " + newUsername + "!";
-                // Redirect to lobby or main page
-                window.location.href = "https://www.roblox.com"; // Redirect to Roblox
-            }, 1000); // Simulated delay
-        });
-
-        // Show sign up form
-        document.getElementById('showSignUp').addEventListener('click', function() {
-            document.getElementById('loginForm').parentElement.style.display = 'none';
-            document.getElementById('signUpContainer').style.display = 'block';
-        });
-
-        // Show login form
-        document.getElementById('showLogin').addEventListener('click', function() {
-            document.getElementById('signUpContainer').style.display = 'none';
-            document.getElementById('loginForm').parentElement.style.display = 'block';
+        document.getElementById('downloadButton').addEventListener('click', function() {
+            // Simulate file download
+            var downloadResult = document.getElementById('downloadResult');
+            downloadResult.textContent = "Your download will start shortly...";
+            
+            // Create a temporary link to download the file
+            var link = document.createElement('a');
+            link.href = 'path/to/your/file.zip'; // Replace with your file path
+            link.download = 'yourfile.zip'; // Replace with your desired file name
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         });
     </script>
 </body>
